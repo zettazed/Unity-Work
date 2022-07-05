@@ -1,7 +1,7 @@
 using UnityEngine;
 using GoogleMobileAds.Api;
 
-public class AdsManager : MonoBehaviour
+public class AdsManager : MonoBehaviour, IAds
 {
     #region Variables
     #region Others
@@ -39,7 +39,7 @@ public class AdsManager : MonoBehaviour
         InitRewardedAd();
     }
 
-    private void InitInterstitialAd()
+    public void InitInterstitialAd()
     {
         _interstitialAd = new InterstitialAd(_interstitialAdKey);
         AdRequest adRequest = new AdRequest.Builder().Build();
@@ -47,7 +47,7 @@ public class AdsManager : MonoBehaviour
         _interstitialAd.OnAdClosed += _interstitialAd_OnAdClosed;
     }
 
-    private void InitRewardedAd()
+    public void InitRewardedAd()
     {
         _rewardedAd = new RewardedAd(_rewardedAdKey);
         AdRequest adRequest = new AdRequest.Builder().Build();
