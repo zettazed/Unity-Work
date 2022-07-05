@@ -1,6 +1,6 @@
 using System;
 
-public static class DateManager
+public static class DateManager : ICurrentDate
 {
     public static int GetCurrentDay()
     {
