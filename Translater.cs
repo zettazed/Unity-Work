@@ -37,7 +37,7 @@ public class Translater : MonoBehaviour, ITranslator
         switch (m_Language)
         {
             case Language.EN:
-                DictionaryLanguages = FileManager.ReadFile(Application.persistentDataPath + "/MoonCatResources/Data/Dictionary.txt").Split('/'); ;
+                DictionaryLanguages = FileManager.ReadFile(Application.persistentDataPath + "/Resources/Data/Dictionary.txt").Split('/'); ;
                 foreach (string DictionaryLanguage in DictionaryLanguages)
                 {
                     string[] DictionaryWords = DictionaryLanguage.Split('_');
@@ -59,7 +59,7 @@ public class Translater : MonoBehaviour, ITranslator
                 break;
 
             case Language.RU:
-                DictionaryLanguages = FileManager.ReadFile(Application.persistentDataPath + "/MoonCatResources/Data/Dictionary.txt").Split('/'); ;
+                DictionaryLanguages = FileManager.ReadFile(Application.persistentDataPath + "/Resources/Data/Dictionary.txt").Split('/'); ;
                 foreach (string DictionaryLanguage in DictionaryLanguages)
                 {
                     string[] DictionaryWords = DictionaryLanguage.Split('_');
