@@ -1,7 +1,7 @@
 using UnityEditor;
 using System.IO;
 
-public class FileManager
+public class FileManager : IFileWrite, IFileRead
 {
     public static void WriteStringAtEnd(string path, string text)
     {
