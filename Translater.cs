@@ -1,11 +1,11 @@
 using UnityEngine;
 
 /// <summary>
-/// Класс работы с переводом текстов.
-/// Обязательно нужно создать файл Dictionary.text
-/// в папке  Assets/Resources/Data/ перед использованием
+/// РљР»Р°СЃСЃ СЂР°Р±РѕС‚С‹ СЃ РїРµСЂРµРІРѕРґРѕРј С‚РµРєСЃС‚РѕРІ.
+/// РћР±СЏР·Р°С‚РµР»СЊРЅРѕ РЅСѓР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р» Dictionary.text
+/// РІ РїР°РїРєРµ  Assets/Resources/Data/ РїРµСЂРµРґ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј
 /// </summary>
-public class Translater : MonoBehaviour
+public class Translater : MonoBehaviour, ITranslator
 {
     public static Language m_Language;
     [SerializeField] private static string RU_Dictionary;
