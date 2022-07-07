@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 /// <summary>
 /// Класс работы с переводом текстов.
@@ -7,19 +9,27 @@ using UnityEngine;
 /// </summary>
 public class Translater : MonoBehaviour, ITranslator
 {
-    public static Language m_Language;
-    [SerializeField] private static string RU_Dictionary;
-    [SerializeField] private static string EN_Dictionary;
+    public static Translater Instance;
+    private string[] DictionaryLanguages;
+    private string[] DictionaryWordsToTranslate;
+    private int wordIndex = -1;
+    private Language m_Language = Language.EN;
+    [SerializeField] private List<Text> translateObjects = new List<Text>();
 
-    public enum Language
+    private enum Language
     {
         RU,
         EN
     };
 
-    private void Start()
+    private void Awake() => Instance = this;
+
+    private void Start() => LoadLanguage();
+
+    private void ChangeLanguage()
     {
-        LoadLanguage();
+        foreach (Text translateObject in translateObjects)
+            translateObject.text = GetTranslate(translateObject.text);
     }
 
     private void LoadLanguage()
@@ -28,38 +38,25 @@ public class Translater : MonoBehaviour, ITranslator
         SetLanguageLocal(langCode);
     }
 
-    public static string GetTranslate(string text)
+    public string GetTranslate(string text, Text translateObject)
     {
-        string[] DictionaryLanguages;
-        string[] DictionaryWordsToTranslate;
-        int wordIndex = -1;
+        translateObjects.Add(translateObject);
 
+        return Translate(text);
+    }
+
+    public string GetTranslate(string text)
+    {
+        return Translate(text);
+    }
+
+    private string Translate(string text)
+    {
         switch (m_Language)
         {
             case Language.EN:
-                DictionaryLanguages = FileManager.ReadFile(Application.persistentDataPath + "/Assets/Resources/Data/Dictionary.txt").Split('/'); ;
-                foreach (string DictionaryLanguage in DictionaryLanguages)
-                {
-                    string[] DictionaryWords = DictionaryLanguage.Split('_');
-                    for (int i = 0; i < DictionaryWords.Length; i++)
-                    {
-                        if (text == DictionaryWords[i])
-                        {
-                            wordIndex = i;
-                            break;
-                        }
-                    }
-
-                    if (wordIndex != -1)
-                        break;
-                }
-
-                DictionaryWordsToTranslate = DictionaryLanguages[0].Split('_');
-                text = DictionaryWordsToTranslate[wordIndex];
-                break;
-
-            case Language.RU:
-                DictionaryLanguages = FileManager.ReadFile(Application.persistentDataPath + "/Assets/Resources/Data/Dictionary.txt").Split('/'); ;
+                Debug.Log("EN");
+                DictionaryLanguages = FileManager.ReadFile("C:/Users/Kenny McCormic/Desktop/GameTemplates/aMoonCat-main/Assets/MoonCatResources/Data/Dictionary.txt").Split('/');
                 foreach (string DictionaryLanguage in DictionaryLanguages)
                 {
                     string[] DictionaryWords = DictionaryLanguage.Split('_');
@@ -79,13 +76,35 @@ public class Translater : MonoBehaviour, ITranslator
                 DictionaryWordsToTranslate = DictionaryLanguages[1].Split('_');
                 text = DictionaryWordsToTranslate[wordIndex];
                 break;
+
+            case Language.RU:
+                Debug.Log("RU");
+                DictionaryLanguages = FileManager.ReadFile("C:/Users/Kenny McCormic/Desktop/GameTemplates/aMoonCat-main/Assets/MoonCatResources/Data/Dictionary.txt").Split('/');
+                foreach (string DictionaryLanguage in DictionaryLanguages)
+                {
+                    string[] DictionaryWords = DictionaryLanguage.Split('_');
+                    for (int i = 0; i < DictionaryWords.Length; i++)
+                    {
+                        if (text == DictionaryWords[i])
+                        {
+                            wordIndex = i;
+                            break;
+                        }
+                    }
+
+                    if (wordIndex != -1)
+                        break;
+                }
+
+                DictionaryWordsToTranslate = DictionaryLanguages[0].Split('_');
+                text = DictionaryWordsToTranslate[wordIndex];
+                break;
         }
-        
 
         return text;
     }
 
-    public static void SetLanguage(string langCode)
+    public void SetLanguage(string langCode)
     {
         switch (langCode)
         {
@@ -99,6 +118,8 @@ public class Translater : MonoBehaviour, ITranslator
                 PlayerPrefs.SetString("CurrentLanguage", "RU");
                 break;
         }
+        ChangeLanguage();
+        PlayerPrefs.Save();
     }
 
     private void SetLanguageLocal(string langCode)
@@ -108,7 +129,6 @@ public class Translater : MonoBehaviour, ITranslator
             case "EN":
                 m_Language = Language.EN;
                 break;
-
             case "RU":
                 m_Language = Language.RU;
                 break;
