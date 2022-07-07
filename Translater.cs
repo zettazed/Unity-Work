@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEditor;
 
 /// <summary>
 /// Класс работы с переводом текстов.
@@ -10,10 +11,10 @@ using System.Collections.Generic;
 public class Translater : MonoBehaviour, ITranslator
 {
     public static Translater Instance;
-    private string[] DictionaryLanguages;
-    private string[] DictionaryWordsToTranslate;
-    private int wordIndex = -1;
-    private Language m_Language = Language.EN;
+    [SerializeField] private string[] DictionaryLanguages;
+    [SerializeField] private string[] DictionaryWordsToTranslate;
+    [SerializeField] private int wordIndex = -1;
+    [SerializeField] private Language m_Language = Language.EN;
     [SerializeField] private List<Text> translateObjects = new List<Text>();
 
     private enum Language
@@ -35,6 +36,7 @@ public class Translater : MonoBehaviour, ITranslator
     private void LoadLanguage()
     {
         string langCode = PlayerPrefs.GetString("CurrentLanguage", "EN");
+        GameManager.instance.SetCheckmarksOnLanguage(langCode);
         SetLanguageLocal(langCode);
     }
 
@@ -55,8 +57,6 @@ public class Translater : MonoBehaviour, ITranslator
         switch (m_Language)
         {
             case Language.EN:
-                Debug.Log("EN");
-                DictionaryLanguages = FileManager.ReadFile("C:/Users/Kenny McCormic/Desktop/GameTemplates/aMoonCat-main/Assets/MoonCatResources/Data/Dictionary.txt").Split('/');
                 foreach (string DictionaryLanguage in DictionaryLanguages)
                 {
                     string[] DictionaryWords = DictionaryLanguage.Split('_');
@@ -78,8 +78,6 @@ public class Translater : MonoBehaviour, ITranslator
                 break;
 
             case Language.RU:
-                Debug.Log("RU");
-                DictionaryLanguages = FileManager.ReadFile("C:/Users/Kenny McCormic/Desktop/GameTemplates/aMoonCat-main/Assets/MoonCatResources/Data/Dictionary.txt").Split('/');
                 foreach (string DictionaryLanguage in DictionaryLanguages)
                 {
                     string[] DictionaryWords = DictionaryLanguage.Split('_');
@@ -133,5 +131,29 @@ public class Translater : MonoBehaviour, ITranslator
                 m_Language = Language.RU;
                 break;
         }
+    }
+    public void DictionaryLanguagesSplit()
+    {
+        #if UNITY_EDITOR
+        DictionaryLanguages = FileManager.ReadFile("C:/Users/Kenny McCormic/Desktop/GameTemplates/aMoonCat-main/Assets/MoonCatResources/Data/Dictionary.txt").Split('/');
+        #endif
+    }
+}
+
+[CustomEditor(typeof(Translater))]
+public class TranslaterEditor : Editor
+{
+    public Translater translater;
+
+    private void OnEnable()
+    {
+        translater = (Translater)target;
+    }
+
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        if (GUILayout.Button("Dictionary Languages Split"))
+            translater.DictionaryLanguagesSplit();
     }
 }
