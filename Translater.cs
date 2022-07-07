@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 /// <summary>
 /// Класс работы с переводом текстов.
@@ -139,7 +141,7 @@ public class Translater : MonoBehaviour, ITranslator
         #endif
     }
 }
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(Translater))]
 public class TranslaterEditor : Editor
 {
@@ -157,3 +159,4 @@ public class TranslaterEditor : Editor
             translater.DictionaryLanguagesSplit();
     }
 }
+#endif
