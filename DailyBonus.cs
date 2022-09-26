@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using GGMatch3;
 
-public class DailyRewards : MonoBehaviour
+public class DailyBonus : MonoBehaviour
 {
     [SerializeField] private GameObject _menu;
     [SerializeField] private int _nowDay = 1;
