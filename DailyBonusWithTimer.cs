@@ -24,8 +24,27 @@ public class DailyBonusWithTimer : MonoBehaviour
 
     private void Awake()
     {
-        _nowDay = PlayerPrefs.GetInt("NowDayDailyLoginBonus", 1);
+        if (!PlayerPrefs.HasKey("StartDateDailyBonus"))
+        {
+            startDate = Convert.ToDateTime(DateTime.Now.ToString());
+            PlayerPrefs.SetString("StartDateDailyBonus", startDate.ToString());
+        }
+        else
+            startDate = Convert.ToDateTime(PlayerPrefs.GetString("StartDateDailyBonus"));
+
+        endDate = startDate.AddDays(14);
+
+        TimeSpan difference = endDate - DateTime.Now;
+        if (difference.Seconds <= 0)
+        {
+            PlayerPrefs.DeleteKey("NowDayDailyLoginBonus");
+            PlayerPrefs.DeleteKey("PlayDate");
+            PlayerPrefs.DeleteKey("DailyBonus1Getted");
+            PlayerPrefs.DeleteKey("StartDateDailyBonus");
+            PlayerPrefs.DeleteKey("DailyBonusCompleted");
+        }
         DayCheck();
+        _nowDay = PlayerPrefs.GetInt("NowDayDailyLoginBonus", 1);
         if (_nowDay == 1)
         {
             _menuDays[0].sprite = _currentDaySprite;
@@ -49,20 +68,12 @@ public class DailyBonusWithTimer : MonoBehaviour
         TimeSpan difference = endDate-DateTime.Now;
         _timerReset.text = difference.Days.ToString() + "d " + difference.Hours.ToString() + "h " + difference.Minutes.ToString() + "m " + difference.Seconds.ToString() + "s ";
         
-        if (difference.ConvertTo<DateTime>() <= endDate)
-        {
-            PlayerPrefs.DeleteKey("NowDayDailyLoginBonus");
-            PlayerPrefs.DeleteKey("PlayDate");
-            PlayerPrefs.DeleteKey("DailyBonus1Getted");
-            PlayerPrefs.DeleteKey("StartDateDailyBonus");
-            PlayerPrefs.DeleteKey("DailyBonusCompleted");
-        }
-        
         StartCoroutine(Timer());
     }
         
     public void DayCheck()
     {
+        _nowDay = PlayerPrefs.GetInt("NowDayDailyLoginBonus", 1);
         string stringDate;
         if (PlayerPrefs.HasKey("PlayDate"))
             stringDate = PlayerPrefs.GetString("PlayDate");
@@ -71,21 +82,28 @@ public class DailyBonusWithTimer : MonoBehaviour
             stringDate = DateTime.Now.ToString();
             PlayerPrefs.SetString("PlayDate", stringDate);
         }
-        if (!PlayerPrefs.HasKey("StartDateDailyBonus"))
-        {
-            startDate = Convert.ToDateTime(stringDate);
-            PlayerPrefs.SetString("StartDateDailyBonus", startDate.ToString());
-        }
-        else
-            startDate = Convert.ToDateTime(PlayerPrefs.GetString("StartDateDailyBonus"));
+        
         oldDate = Convert.ToDateTime(stringDate);
         newDate = DateTime.Now;
-        endDate = startDate.AddDays(14);
 
         if (PlayerPrefs.GetInt("DailyBonusCompleted", 0) == 1)
             return;
 
         TimeSpan difference = newDate.Subtract(oldDate);
+        if  (oldDate.Day == newDate.Day)
+        {
+            if (!_gettedCases[_nowDay - 1].activeInHierarchy)
+            {
+                _canGetReward = true;
+                _menuDays[_nowDay - 1].sprite = _currentDaySprite;
+                foreach (Button _buttonGetReward in _buttonsGetReward)
+                    _buttonGetReward.interactable = true;
+                string newStringDate = Convert.ToString(newDate);
+                PlayerPrefs.SetString("PlayDate", newStringDate);
+                OpenMenu();
+            }
+        }
+
         if (difference.Days == 1)
         {
             _canGetReward = true;
@@ -111,6 +129,28 @@ public class DailyBonusWithTimer : MonoBehaviour
     public void OpenMenu()
     {
         _menu.SetActive(true);
+        TimeSpan difference = endDate - DateTime.Now;
+        if (difference.Seconds <= 0)
+            ResetDailyBonus();
+    }
+
+    private void ResetDailyBonus()
+    {
+        PlayerPrefs.DeleteKey("NowDayDailyLoginBonus");
+        PlayerPrefs.DeleteKey("PlayDate");
+        PlayerPrefs.DeleteKey("DailyBonus1Getted");
+        PlayerPrefs.DeleteKey("StartDateDailyBonus");
+        PlayerPrefs.DeleteKey("DailyBonusCompleted");
+
+        _menuDays[0].sprite = _currentDaySprite;
+        _canGetReward = true;
+        foreach (Button _buttonGetReward in _buttonsGetReward)
+            _buttonGetReward.interactable = true;
+
+        for (int i = 0; i < _gettedCases.Length; i++)
+        {
+            _gettedCases[i].SetActive(false);
+        }
     }
 
     public void CloseMenu()
