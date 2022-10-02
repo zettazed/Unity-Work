@@ -6,9 +6,9 @@ using UnityEditor;
 #endif
 
 /// <summary>
-/// Класс работы с переводом текстов.
-/// Обязательно нужно создать файл Dictionary.text
-/// в папке  Assets/Resources/Data/ перед использованием
+/// РљР»Р°СЃСЃ СЂР°Р±РѕС‚С‹ СЃ РїРµСЂРµРІРѕРґРѕРј С‚РµРєСЃС‚РѕРІ.
+/// РћР±СЏР·Р°С‚РµР»СЊРЅРѕ РЅСѓР¶РЅРѕ СЃРѕР·РґР°С‚СЊ С„Р°Р№Р» Dictionary.text
+/// РІ РїР°РїРєРµ  Assets/Resources/Data/ РїРµСЂРµРґ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј
 /// </summary>
 public class Translater : MonoBehaviour, ITranslator
 {
@@ -31,40 +31,40 @@ public class Translater : MonoBehaviour, ITranslator
 
     private void ChangeLanguage()
     {
-        translateObjects[0].text = Translater.Instance.GetTranslate("Получи 100 монет за рекламу!");
-        translateObjects[1].text = Translater.Instance.GetTranslate("Увеличишь свой рекорд?");
-        translateObjects[2].text = Translater.Instance.GetTranslate("Пройдёшь 80 препятствий?");
-        translateObjects[3].text = Translater.Instance.GetTranslate("Сможешь получить 150 монет?");
-        translateObjects[4].text = Translater.Instance.GetTranslate("Продержишься в игре 3 минуты?");
-        translateObjects[5].text = Translater.Instance.GetTranslate("Не хотите оценить игру?");
-        translateObjects[6].text = Translater.Instance.GetTranslate("Нет");
-        translateObjects[7].text = Translater.Instance.GetTranslate("Позже");
-        translateObjects[8].text = Translater.Instance.GetTranslate("Да");
-        translateObjects[9].text = Translater.Instance.GetTranslate("Игра Окончена");
-        translateObjects[10].text = Translater.Instance.GetTranslate("Реклама пока не готова...");
-        translateObjects[11].text = Translater.Instance.GetTranslate("Желаете ли продолжить за просмотр рекламы?");
-        translateObjects[12].text = Translater.Instance.GetTranslate("Нет");
-        translateObjects[13].text = Translater.Instance.GetTranslate("Да");
+        translateObjects[0].text = Translater.Instance.GetTranslate("РџРѕР»СѓС‡Рё 100 РјРѕРЅРµС‚ Р·Р° СЂРµРєР»Р°РјСѓ!");
+        translateObjects[1].text = Translater.Instance.GetTranslate("РЈРІРµР»РёС‡РёС€СЊ СЃРІРѕР№ СЂРµРєРѕСЂРґ?");
+        translateObjects[2].text = Translater.Instance.GetTranslate("РџСЂРѕР№РґС‘С€СЊ 80 РїСЂРµРїСЏС‚СЃС‚РІРёР№?");
+        translateObjects[3].text = Translater.Instance.GetTranslate("РЎРјРѕР¶РµС€СЊ РїРѕР»СѓС‡РёС‚СЊ 150 РјРѕРЅРµС‚?");
+        translateObjects[4].text = Translater.Instance.GetTranslate("РџСЂРѕРґРµСЂР¶РёС€СЊСЃСЏ РІ РёРіСЂРµ 3 РјРёРЅСѓС‚С‹?");
+        translateObjects[5].text = Translater.Instance.GetTranslate("РќРµ С…РѕС‚РёС‚Рµ РѕС†РµРЅРёС‚СЊ РёРіСЂСѓ?");
+        translateObjects[6].text = Translater.Instance.GetTranslate("РќРµС‚");
+        translateObjects[7].text = Translater.Instance.GetTranslate("РџРѕР·Р¶Рµ");
+        translateObjects[8].text = Translater.Instance.GetTranslate("Р”Р°");
+        translateObjects[9].text = Translater.Instance.GetTranslate("РРіСЂР° РћРєРѕРЅС‡РµРЅР°");
+        translateObjects[10].text = Translater.Instance.GetTranslate("Р РµРєР»Р°РјР° РїРѕРєР° РЅРµ РіРѕС‚РѕРІР°...");
+        translateObjects[11].text = Translater.Instance.GetTranslate("Р–РµР»Р°РµС‚Рµ Р»Рё РїСЂРѕРґРѕР»Р¶РёС‚СЊ Р·Р° РїСЂРѕСЃРјРѕС‚СЂ СЂРµРєР»Р°РјС‹?");
+        translateObjects[12].text = Translater.Instance.GetTranslate("РќРµС‚");
+        translateObjects[13].text = Translater.Instance.GetTranslate("Р”Р°");
         if (Parser.IntParsing(translateObjects[14].text) == 0)
-            translateObjects[14].text = Translater.Instance.GetTranslate("Выбрать");
+            translateObjects[14].text = Translater.Instance.GetTranslate("Р’С‹Р±СЂР°С‚СЊ");
         if (Parser.IntParsing(translateObjects[15].text) == 0)
-            translateObjects[15].text = Translater.Instance.GetTranslate("Выбрать");
+            translateObjects[15].text = Translater.Instance.GetTranslate("Р’С‹Р±СЂР°С‚СЊ");
         if (Parser.IntParsing(translateObjects[16].text) == 0)
-            translateObjects[16].text = Translater.Instance.GetTranslate("Выбрать");
+            translateObjects[16].text = Translater.Instance.GetTranslate("Р’С‹Р±СЂР°С‚СЊ");
         if (Parser.IntParsing(translateObjects[17].text) == 0)
-            translateObjects[17].text = Translater.Instance.GetTranslate("Выбрать");
+            translateObjects[17].text = Translater.Instance.GetTranslate("Р’С‹Р±СЂР°С‚СЊ");
         if (Parser.IntParsing(translateObjects[18].text) == 0)
-            translateObjects[18].text = Translater.Instance.GetTranslate("Выбрать");
+            translateObjects[18].text = Translater.Instance.GetTranslate("Р’С‹Р±СЂР°С‚СЊ");
         if (Parser.IntParsing(translateObjects[19].text) == 0)
-            translateObjects[19].text = Translater.Instance.GetTranslate("Выбрать");
+            translateObjects[19].text = Translater.Instance.GetTranslate("Р’С‹Р±СЂР°С‚СЊ");
         if (Parser.IntParsing(translateObjects[20].text) == 0)
-            translateObjects[20].text = Translater.Instance.GetTranslate("Выбрать");
+            translateObjects[20].text = Translater.Instance.GetTranslate("Р’С‹Р±СЂР°С‚СЊ");
         if (Parser.IntParsing(translateObjects[21].text) == 0)
-            translateObjects[21].text = Translater.Instance.GetTranslate("Выбрать");
+            translateObjects[21].text = Translater.Instance.GetTranslate("Р’С‹Р±СЂР°С‚СЊ");
         if (Parser.IntParsing(translateObjects[22].text) == 0)
-            translateObjects[22].text = Translater.Instance.GetTranslate("Выбрать");
+            translateObjects[22].text = Translater.Instance.GetTranslate("Р’С‹Р±СЂР°С‚СЊ");
         if (Parser.IntParsing(translateObjects[23].text) == 0)
-            translateObjects[23].text = Translater.Instance.GetTranslate("Выбрать");
+            translateObjects[23].text = Translater.Instance.GetTranslate("Р’С‹Р±СЂР°С‚СЊ");
     }
 
     private void LoadLanguage()
