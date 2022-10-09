@@ -1,0 +1,50 @@
+Сборка для гугл:
+
+	Коты
+	C:/Main/GameTemplates/Home Design 09.09.2022/Home Design - Miss Robins Home Makeover Game/keystore4.keystore
+
+	Дизайн дома
+	C:/Main/GameTemplates/Home Design 09.09.2022/Home Design - Miss Robins Home Makeover Game/keystore3.keystore
+
+	Шарики
+	C:/Users/Kenny McCormic/Desktop/GameTemplates/Bubble Shooter Panda/Bubble Shooter Panda/witchpop3.keystore
+
+	Build Android Studio:
+
+		1) unityLibrary -> manifests -> AndroidManifest.xml
+			1.1) Добавить атрибут(если отсутствует) android:exported="true" в <activity>
+			1.2) Добавить строку:
+				<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+		
+		2) build.gradle (Module: ИмяПроекта.unityLibrary)
+			2.1) Удалить строку:
+				implementation(name: 'billing-версия', ext:'aar')
+
+			2.2) Добавить строчки:
+				def billing_version = "4.0.0"
+				implementation "com.android.billingclient:billing:$billing_version"
+
+		3) build.gradle (Project: Имя проекта)
+			3.1) Обновить gradle (навести курсор на gradle и нажать на More Actions)
+
+		4) gradle.properties (Project Properties)
+			4.1) убрать android.enableR8
+
+		5) Если после публикации билда крашится игра:
+			build.gradle (Module: ИмяПроекта.unityLibrary)
+			5.1) Добавить строку:
+				implementation 'androidx.work:work-runtime:2.7.0'
+
+
+	Keystore:
+		Alias: release
+		Password: 32505530l
+
+
+	LogCat:
+
+		cd C:\Program Files\Unity\Hub\Editor\2021.1.1f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools
+или
+		cd C:\Program Files\Unity\Hub\Editor\2020.2.7f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools
+
+		adb logcat -s Unity
