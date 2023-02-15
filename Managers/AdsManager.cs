@@ -19,6 +19,7 @@ public class AdsManager : MonoBehaviour, IAds
     #endregion
 
     #region Ad
+    private BannerView bannerView;
     private InterstitialAd _interstitialAd;
     public RewardedAd _rewardedAd;
     #endregion
@@ -37,6 +38,16 @@ public class AdsManager : MonoBehaviour, IAds
     {
         InitInterstitialAd();
         InitRewardedAd();
+    }
+
+    private void RequestBanner()
+    {
+        this.bannerView = new BannerView(_bannerAdKey, AdSize.Banner, AdPosition.Top);
+        
+        AdRequest request = new AdRequest.Builder().Build();
+        
+        this.bannerView.LoadAd(request);
+        bannerView.Show();
     }
 
     public void InitInterstitialAd()
