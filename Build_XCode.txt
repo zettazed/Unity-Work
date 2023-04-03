@@ -1,0 +1,19 @@
+Сборка для App Store:
+
+	Project, Targets, Pod файл:
+		General:
+			Display Name - Название игры
+			Version - Версия игры
+			Build - номер сборки
+		Signing & Capabilities:
+			Automatically Manage Signing - Yes
+		Build Settings:
+			Architectures - arm64
+			Build Active Architecture Only - Yes
+			Enable Bitcode - Yes
+
+Если есть ошибки:
+	Google AdMob (Google App Measurement просит включить Bitcode, а он включен):
+		В Pod файле изменить версию адмоб на 8.4
+	После загрузки в Testflight ошибка (invalid asset bundle):
+		В каждом таргете Always Embed Swift Standard Libraries - No
