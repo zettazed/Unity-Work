@@ -1,0 +1,3 @@
+BuildWebGL Unity:
+
+Ставим webGLLinkerTarget: 1 , чтобы сделать сборку wasm, если в сборке файлы asm.
