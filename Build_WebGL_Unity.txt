@@ -1,3 +1,23 @@
 BuildWebGL Unity:
+Билды делать на версии Unity не ниже 2020.
+
 
 Ставим webGLLinkerTarget: 1 , чтобы сделать сборку wasm, если в сборке файлы asm.
+
+Для Яндекс игр:
+Yandex SDK -> Initialize SDK
+	Project Settings (Player):
+		Resolution and Presentation:
+			Run In Background = false
+			WebGL Template = Yandex
+		Other Settings:
+			Color Space = Gamma
+			Lightmap Encoding = Low Quality
+		Publishing Settings:
+			Compression Format = Gzip
+			DataCaching = true
+			Decompression Fallback = true
+
+Сборку делать через Yandex SDK Builder:
+	Directory path - выбрать папку куда делать билд
+	Insert game title - название папки и архива проекта с WebGL исходником
