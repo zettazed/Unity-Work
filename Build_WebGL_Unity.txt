@@ -21,3 +21,6 @@ Yandex SDK -> Initialize SDK
 Сборку делать через Yandex SDK Builder:
 	Directory path - выбрать папку куда делать билд
 	Insert game title - название папки и архива проекта с WebGL исходником
+
+Покупки:
+https://unityhub.ru/guides/kak-podklyuchit-vnutriigrovye-pokupki-dlya-yandeks-igr_88
