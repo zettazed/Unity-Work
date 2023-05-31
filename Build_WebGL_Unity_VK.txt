@@ -1,0 +1,53 @@
+BuildWebGL Unity:
+Билды делать на версии Unity не ниже 2020.
+
+
+Ставим webGLLinkerTarget: 1 , чтобы сделать сборку wasm, если в сборке файлы asm.
+
+Для VK:
+	Project Settings (Player):
+		Resolution and Presentation:
+			Run In Background = false
+			WebGL Template = Yandex
+		Other Settings:
+			Color Space = Gamma
+			Lightmap Encoding = Low Quality
+		Publishing Settings:
+			Compression Format = Gzip
+			DataCaching = true
+			Decompression Fallback = true
+
+В тег HEAD в index.html:
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+
+    в тег SCRIPT в BODY:
+		jQuery(document).ready(function($) // страница прогружена
+		{
+			vkBridge.send('VKWebAppInit');
+		});
+
+Реклама:
+	function showInterstitial ()
+	{
+		vkBridge.send('VKWebAppShowNativeAds', {ad_format:"interstitial"}).then(data => {console.log(data);});
+	}
+
+	function showRewarded ()
+	{
+		vkBridge.send('VKWebAppShowNativeAds', {ad_format:"reward"}).then(data => {console.log(data);
+		unityInstance.SendMessage('название скрипта в Unity, где происходит вознаграждение за рекламу', 'Название метода в Unity вознаграждения', JSON.stringify(data.result));});
+	}
+
+	script.jslib:
+		mergeInto(LibraryManager.library, {
+		    Название метода в скрипте с рекламой: function () {
+		        showInterstitial ();
+		    },
+		    Название метода в скрипте с рекламой Rewarded: function () {
+		        showRewarded ();
+		    }
+		});
+
+index.html:
+	убрать всё, что связано с Yandex
