@@ -53,8 +53,53 @@ Project Settings:
 		    },
 		    Название метода в скрипте с рекламой Rewarded: function () {
 		        showRewarded ();
-		    }
+		    },
+		    Название метода в скрипте с кнопкой поделиться: function () {
+		        share ();
+		    },
+		    Название метода в скрипте с кнопкой пригласить друзей: function () {
+		        share ();
+		    }		    
 		});
+
+Поделиться:
+function share ()
+{
+	bridge.send('VKWebAppShowWallPostBox', {
+	    message: 'Я соединяю точки, и готов пройти все уровни, посоревнуемся?',
+	    attachment: 'https://vk.com/app51667123_387202353',
+	  })
+	  .then( (data) => {
+	    // Запись отправлена на стену
+	    console.log(`Идентификатор записи: ${data.post_id}`);
+	  })
+	  .catch( (e) => {
+	    console.log("Ошибка!", e);
+	  })
+}
+
+function friendInvite ()
+{
+	bridge.send('VKWebAppShowInviteBox', { 
+  
+  })
+  .then( (data) => {
+    if (data.success) {
+      // Приглашение выслано ...
+      // ...
+      
+      // Эти пользователи не получили сообщение
+      // console.log('Приглашение не было отослано', data.notSentIds );
+    }
+  })
+  .catch( (e) => { 
+    let { error_code, error_reason } = e.error_data; 
+    if( error_code == 4 && error_reason == 'User denied') {
+      // Пользователь нажал «Отмена» в диалоге
+      ...
+    }  
+  });
+}
 
 index.html:
 	убрать всё, что связано с Yandex
