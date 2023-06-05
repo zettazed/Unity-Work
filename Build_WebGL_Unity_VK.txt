@@ -1,8 +1,8 @@
 BuildWebGL Unity:
 Билды делать на версии Unity не ниже 2020.
 
-
-Ставим webGLLinkerTarget: 1 , чтобы сделать сборку wasm, если в сборке файлы asm.
+Project Settings:
+	Ставим webGLLinkerTarget: 1 , чтобы сделать сборку wasm, если в сборке файлы asm.
 
 Для VK:
 	Project Settings (Player):
@@ -28,6 +28,13 @@ BuildWebGL Unity:
 		});
 
 Реклама:
+	В Unity:
+		[DllImport("__Internal")]
+	    private static extern void ShowInterstitialRequest();
+
+	    [DllImport("__Internal")]
+	    private static extern void ShowRewardedRequest();
+
 	function showInterstitial ()
 	{
 		vkBridge.send('VKWebAppShowNativeAds', {ad_format:"interstitial"}).then(data => {console.log(data);});
