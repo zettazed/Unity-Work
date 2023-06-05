@@ -1,8 +1,8 @@
 BuildWebGL Unity:
 Билды делать на версии Unity не ниже 2020.
 
-
-Ставим webGLLinkerTarget: 1 , чтобы сделать сборку wasm, если в сборке файлы asm.
+Project Settings:
+	Ставим webGLLinkerTarget: 1 , чтобы сделать сборку wasm, если в сборке файлы asm.
 
 Для Яндекс игр:
 Yandex SDK -> Initialize SDK
