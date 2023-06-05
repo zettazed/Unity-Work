@@ -71,6 +71,7 @@ function share ()
 	  })
 	  .then( (data) => {
 	    // Запись отправлена на стену
+	    unityInstance.SendMessage('скрипт с методом вызова подарка за репост игры', 'метод вызова подарка за репост игры', JSON.stringify(data.result));
 	    console.log(`Идентификатор записи: ${data.post_id}`);
 	  })
 	  .catch( (e) => {
@@ -87,7 +88,7 @@ function friendInvite ()
     if (data.success) {
       // Приглашение выслано ...
       // ...
-      
+      unityInstance.SendMessage('скрипт с методом вызова подарка за приглашение друзей', 'метод вызова подарка за приглашение друзей', JSON.stringify(data.result));
       // Эти пользователи не получили сообщение
       // console.log('Приглашение не было отослано', data.notSentIds );
     }
@@ -96,7 +97,6 @@ function friendInvite ()
     let { error_code, error_reason } = e.error_data; 
     if( error_code == 4 && error_reason == 'User denied') {
       // Пользователь нажал «Отмена» в диалоге
-      ...
     }  
   });
 }
