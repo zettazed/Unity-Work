@@ -35,16 +35,18 @@ Project Settings:
 	    [DllImport("__Internal")]
 	    private static extern void ShowRewardedRequest();
 
-	function showInterstitial ()
-	{
-		vkBridge.send('VKWebAppShowNativeAds', {ad_format:"interstitial"}).then(data => {console.log(data);});
-	}
-
-	function showRewarded ()
-	{
-		vkBridge.send('VKWebAppShowNativeAds', {ad_format:"reward"}).then(data => {console.log(data);
-		unityInstance.SendMessage('название скрипта в Unity, где происходит вознаграждение за рекламу', 'Название метода в Unity вознаграждения', JSON.stringify(data.result));});
-	}
+	index.html:
+		Межстраничная (Полноэкранная):
+			function showInterstitial ()
+			{
+				vkBridge.send('VKWebAppShowNativeAds', {ad_format:"interstitial"}).then(data => {console.log(data);});
+			}
+		С вознаграждением:
+			function showRewarded ()
+			{
+				vkBridge.send('VKWebAppShowNativeAds', {ad_format:"reward"}).then(data => {console.log(data);
+				unityInstance.SendMessage('название скрипта в Unity, где происходит вознаграждение за рекламу', 'Название метода в Unity вознаграждения', JSON.stringify(data.result));});
+			}
 
 	script.jslib:
 		mergeInto(LibraryManager.library, {
@@ -63,61 +65,64 @@ Project Settings:
 		});
 
 Поделиться:
-function share ()
-{
-	vkBridge.send('VKWebAppShowWallPostBox', {
-	    message: 'Я соединяю точки, и готов пройти все уровни, посоревнуемся?',
-	    attachment: 'https://vk.com/app51667123_387202353',
+	function share ()
+	{
+		vkBridge.send('VKWebAppShowWallPostBox', {
+		    message: 'Я соединяю точки, и готов пройти все уровни, посоревнуемся?',
+		    attachment: 'https://vk.com/app51667123_387202353',
+		  })
+		  .then( (data) => {
+		    // Запись отправлена на стену
+		    unityInstance.SendMessage('скрипт с методом вызова подарка за репост игры', 'метод вызова подарка за репост игры', JSON.stringify(data.result));
+		    console.log(`Идентификатор записи: ${data.post_id}`);
+		  })
+		  .catch( (e) => {
+		    console.log("Ошибка!", e);
+		  })
+	}
+
+Пригласить друзей в игру:
+	function friendInvite ()
+	{
+		vkBridge.send('VKWebAppShowInviteBox', { 
+	  
 	  })
 	  .then( (data) => {
-	    // Запись отправлена на стену
-	    unityInstance.SendMessage('скрипт с методом вызова подарка за репост игры', 'метод вызова подарка за репост игры', JSON.stringify(data.result));
-	    console.log(`Идентификатор записи: ${data.post_id}`);
+	    if (data.success) {
+	      // Приглашение выслано ...
+	      // ...
+	      unityInstance.SendMessage('скрипт с методом вызова подарка за приглашение друзей', 'метод вызова подарка за приглашение друзей', JSON.stringify(data.result));
+	      // Эти пользователи не получили сообщение
+	      // console.log('Приглашение не было отослано', data.notSentIds );
+	    }
 	  })
-	  .catch( (e) => {
-	    console.log("Ошибка!", e);
-	  })
-}
+	  .catch( (e) => { 
+	    let { error_code, error_reason } = e.error_data; 
+	    if( error_code == 4 && error_reason == 'User denied') {
+	      // Пользователь нажал «Отмена» в диалоге
+	    }  
+	  });
+	}
 
-function friendInvite ()
-{
-	vkBridge.send('VKWebAppShowInviteBox', { 
-  
-  })
-  .then( (data) => {
-    if (data.success) {
-      // Приглашение выслано ...
-      // ...
-      unityInstance.SendMessage('скрипт с методом вызова подарка за приглашение друзей', 'метод вызова подарка за приглашение друзей', JSON.stringify(data.result));
-      // Эти пользователи не получили сообщение
-      // console.log('Приглашение не было отослано', data.notSentIds );
-    }
-  })
-  .catch( (e) => { 
-    let { error_code, error_reason } = e.error_data; 
-    if( error_code == 4 && error_reason == 'User denied') {
-      // Пользователь нажал «Отмена» в диалоге
-    }  
-  });
-}
 
-vkBridge.subscribe(eventHandler); 
-function eventHandler(e) {
+Для отключения всех звуков при выходе из игры или сворачивании:
+	vkBridge.subscribe(eventHandler); 
+	function eventHandler(e) {
 
-  const { type, data } = e.detail;
-  switch(type) {
-    case 'VKWebAppViewHide':
-      my_audio.pause(); // Останавливаем воспроизведение аудио 
-      break;
-    case 'VKWebAppViewRestore': 
-      my_audio.play(); // Запускаем воспроизведение
-      break;
-            
-      // Обработчики других событий
-      // ...
+	  const { type, data } = e.detail;
+	  switch(type) {
+	    case 'VKWebAppViewHide':
+	      my_audio.pause(); // Останавливаем воспроизведение аудио 
+	      break;
+	    case 'VKWebAppViewRestore': 
+	      my_audio.play(); // Запускаем воспроизведение
+	      break;
+	            
+	      // Обработчики других событий
+	      // ...
 
-    }
-}
+	    }
+	}
 
 
 index.html:
