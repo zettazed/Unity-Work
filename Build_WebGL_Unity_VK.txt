@@ -65,7 +65,7 @@ Project Settings:
 Поделиться:
 function share ()
 {
-	bridge.send('VKWebAppShowWallPostBox', {
+	vkBridge.send('VKWebAppShowWallPostBox', {
 	    message: 'Я соединяю точки, и готов пройти все уровни, посоревнуемся?',
 	    attachment: 'https://vk.com/app51667123_387202353',
 	  })
@@ -81,7 +81,7 @@ function share ()
 
 function friendInvite ()
 {
-	bridge.send('VKWebAppShowInviteBox', { 
+	vkBridge.send('VKWebAppShowInviteBox', { 
   
   })
   .then( (data) => {
@@ -100,6 +100,25 @@ function friendInvite ()
     }  
   });
 }
+
+vkBridge.subscribe(eventHandler); 
+function eventHandler(e) {
+
+  const { type, data } = e.detail;
+  switch(type) {
+    case 'VKWebAppViewHide':
+      my_audio.pause(); // Останавливаем воспроизведение аудио 
+      break;
+    case 'VKWebAppViewRestore': 
+      my_audio.play(); // Запускаем воспроизведение
+      break;
+            
+      // Обработчики других событий
+      // ...
+
+    }
+}
+
 
 index.html:
 	убрать всё, что связано с Yandex
