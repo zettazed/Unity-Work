@@ -5,7 +5,7 @@ using UnityEngine;
 using YandexMobileAds;
 using YandexMobileAds.Base;
 
-public class YandexAdManager : MonoBehaviour
+public class YandexAdsManager : MonoBehaviour
 {
 
     public static YandexAdManager Instance;
@@ -39,13 +39,13 @@ public class YandexAdManager : MonoBehaviour
     private void RequestBanner()
     {
         bannerAd = new YandexMobileAds.Banner(bannerAdId, AdSize.BANNER_320x50, AdPosition.BottomCenter);
-        //указываем id места, размер баннера и его позицию.
+        //ГіГЄГ Г§Г»ГўГ ГҐГ¬ id Г¬ГҐГ±ГІГ , Г°Г Г§Г¬ГҐГ° ГЎГ Г­Г­ГҐГ°Г  ГЁ ГҐГЈГ® ГЇГ®Г§ГЁГ¶ГЁГѕ.
     }
 
     public void ShowBanner()
     {
-        AdRequest request = new AdRequest.Builder().Build(); //создаём запрос на вызов баннера
-        bannerAd.LoadAd(request); //отправляем запрос на вызов баннера
+        AdRequest request = new AdRequest.Builder().Build(); //Г±Г®Г§Г¤Г ВёГ¬ Г§Г ГЇГ°Г®Г± Г­Г  ГўГ»Г§Г®Гў ГЎГ Г­Г­ГҐГ°Г 
+        bannerAd.LoadAd(request); //Г®ГІГЇГ°Г ГўГ«ГїГҐГ¬ Г§Г ГЇГ°Г®Г± Г­Г  ГўГ»Г§Г®Гў ГЎГ Г­Г­ГҐГ°Г 
         RequestBanner();
     }
     #endregion
@@ -54,10 +54,10 @@ public class YandexAdManager : MonoBehaviour
     #region RewardedAd
     private void RequestRewardedAd()
     {
-        rewardedAd = new RewardedAd(rewardedAdId); //заполняем переменную с рекламой
-        AdRequest request = new AdRequest.Builder().Build(); //создаём запрос на рекламу
-        rewardedAd.LoadAd(request); // отсылаем запрос на рекламу
-        //начинаем отслеживать события рекламы
+        rewardedAd = new RewardedAd(rewardedAdId); //Г§Г ГЇГ®Г«Г­ГїГҐГ¬ ГЇГҐГ°ГҐГ¬ГҐГ­Г­ГіГѕ Г± Г°ГҐГЄГ«Г Г¬Г®Г©
+        AdRequest request = new AdRequest.Builder().Build(); //Г±Г®Г§Г¤Г ВёГ¬ Г§Г ГЇГ°Г®Г± Г­Г  Г°ГҐГЄГ«Г Г¬Гі
+        rewardedAd.LoadAd(request); // Г®ГІГ±Г»Г«Г ГҐГ¬ Г§Г ГЇГ°Г®Г± Г­Г  Г°ГҐГЄГ«Г Г¬Гі
+        //Г­Г Г·ГЁГ­Г ГҐГ¬ Г®ГІГ±Г«ГҐГ¦ГЁГўГ ГІГј Г±Г®ГЎГ»ГІГЁГї Г°ГҐГЄГ«Г Г¬Г»
         rewardedAd.OnRewardedAdLoaded += this.HandleRewardedAdLoaded;
         rewardedAd.OnRewardedAdFailedToLoad += this.HandleRewardedAdFailedToLoad;
         rewardedAd.OnReturnedToApplication += this.HandleReturnedToApplication;
@@ -67,20 +67,20 @@ public class YandexAdManager : MonoBehaviour
         rewardedAd.OnImpression += this.HandleImpression;
         rewardedAd.OnRewarded += this.HandleRewarded;
     }
-    //метод для вызова рекламы
+    //Г¬ГҐГІГ®Г¤ Г¤Г«Гї ГўГ»Г§Г®ГўГ  Г°ГҐГЄГ«Г Г¬Г»
     public void ShowRewardedAd()
     {
-        //если реклама загружена — показываем её
+        //ГҐГ±Г«ГЁ Г°ГҐГЄГ«Г Г¬Г  Г§Г ГЈГ°ГіГ¦ГҐГ­Г  вЂ” ГЇГ®ГЄГ Г§Г»ГўГ ГҐГ¬ ГҐВё
         if (this.rewardedAd.IsLoaded())
         {
             rewardedAd.Show();
         }
         RequestRewardedAd();
     }
-    //каждый метод будет вызван при определенном действии связанной с рекламой (её загрузкой и тд)
+    //ГЄГ Г¦Г¤Г»Г© Г¬ГҐГІГ®Г¤ ГЎГіГ¤ГҐГІ ГўГ»Г§ГўГ Г­ ГЇГ°ГЁ Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­Г­Г®Г¬ Г¤ГҐГ©Г±ГІГўГЁГЁ Г±ГўГїГ§Г Г­Г­Г®Г© Г± Г°ГҐГЄГ«Г Г¬Г®Г© (ГҐВё Г§Г ГЈГ°ГіГ§ГЄГ®Г© ГЁ ГІГ¤)
     public void HandleRewardedAdLoaded(object sender, EventArgs args)
     {
-        //ShowRewardedAd(); //реклама загружена — показываем её
+        //ShowRewardedAd(); //Г°ГҐГЄГ«Г Г¬Г  Г§Г ГЈГ°ГіГ¦ГҐГ­Г  вЂ” ГЇГ®ГЄГ Г§Г»ГўГ ГҐГ¬ ГҐВё
     }
     public void HandleRewardedAdFailedToLoad(object sender, AdFailureEventArgs args)
     {
@@ -105,10 +105,10 @@ public class YandexAdManager : MonoBehaviour
     #region InterstitialAd
     private void RequestInterstitial()
     {
-        interstitialAd = new Interstitial(interstitialAdId); //заполняем переменную с рекламой
-        AdRequest request = new AdRequest.Builder().Build(); //создаём запрос на показ рекламы
-        interstitialAd.LoadAd(request); //отправляем запрос
-                                      //каждый метод будет вызван при определенном действии связанной с рекламой (её загрузкой и тд)
+        interstitialAd = new Interstitial(interstitialAdId); //Г§Г ГЇГ®Г«Г­ГїГҐГ¬ ГЇГҐГ°ГҐГ¬ГҐГ­Г­ГіГѕ Г± Г°ГҐГЄГ«Г Г¬Г®Г©
+        AdRequest request = new AdRequest.Builder().Build(); //Г±Г®Г§Г¤Г ВёГ¬ Г§Г ГЇГ°Г®Г± Г­Г  ГЇГ®ГЄГ Г§ Г°ГҐГЄГ«Г Г¬Г»
+        interstitialAd.LoadAd(request); //Г®ГІГЇГ°Г ГўГ«ГїГҐГ¬ Г§Г ГЇГ°Г®Г±
+                                      //ГЄГ Г¦Г¤Г»Г© Г¬ГҐГІГ®Г¤ ГЎГіГ¤ГҐГІ ГўГ»Г§ГўГ Г­ ГЇГ°ГЁ Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­Г­Г®Г¬ Г¤ГҐГ©Г±ГІГўГЁГЁ Г±ГўГїГ§Г Г­Г­Г®Г© Г± Г°ГҐГЄГ«Г Г¬Г®Г© (ГҐВё Г§Г ГЈГ°ГіГ§ГЄГ®Г© ГЁ ГІГ¤)
         interstitialAd.OnInterstitialLoaded += this.HandleInterstitialLoaded;
         interstitialAd.OnInterstitialFailedToLoad += this.HandleInterstitialFailedToLoad;
         interstitialAd.OnReturnedToApplication += this.HandleReturnedToApplication;
@@ -117,7 +117,7 @@ public class YandexAdManager : MonoBehaviour
         interstitialAd.OnInterstitialDismissed += this.HandleInterstitialDismissed;
         interstitialAd.OnImpression += this.HandleImpression;
     }
-    //метод для показа рекламы
+    //Г¬ГҐГІГ®Г¤ Г¤Г«Гї ГЇГ®ГЄГ Г§Г  Г°ГҐГЄГ«Г Г¬Г»
     public void ShowInterstitial()
     {
         if (this.interstitialAd.IsLoaded())
@@ -128,7 +128,7 @@ public class YandexAdManager : MonoBehaviour
     }
     public void HandleInterstitialLoaded(object sender, EventArgs args)
     {
-        //ShowInterstitial(); //при загрузки рекламы — показываем её
+        //ShowInterstitial(); //ГЇГ°ГЁ Г§Г ГЈГ°ГіГ§ГЄГЁ Г°ГҐГЄГ«Г Г¬Г» вЂ” ГЇГ®ГЄГ Г§Г»ГўГ ГҐГ¬ ГҐВё
     }
     public void HandleInterstitialFailedToLoad(object sender, AdFailureEventArgs args)
     {
