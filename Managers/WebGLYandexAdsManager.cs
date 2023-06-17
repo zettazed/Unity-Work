@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //using YandexSDK;
 
-public class YandexAdsManager : MonoBehaviour
+public class WebGLYandexAdsManager : MonoBehaviour
 {
     public static YandexAdsManager Instance;
 
