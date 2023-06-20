@@ -8,6 +8,13 @@ public static class Parser
         int.TryParse(string.Join("", text.Where(c => char.IsDigit(c))), out parsingInt);
         return parsingInt;
     }
+
+    public static BigInteger StringToBigInteger(string text)
+    {
+        BigInteger parsingInt = 0;
+        BigInteger.TryParse(string.Join("", text.Where(c => char.IsDigit(c))), out parsingInt);
+        return parsingInt;
+    }
     
     public static string ParseString(string text)
     {
