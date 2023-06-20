@@ -15,6 +15,14 @@ public static class Parser
         BigInteger.TryParse(string.Join("", text.Where(c => char.IsDigit(c))), out parsingInt);
         return parsingInt;
     }
+
+    public static DateTime StringToDateTime(string text)
+    {
+        DateTime time;
+        time = DateTime.Parse(text);
+
+        return time;
+    }
     
     public static string ParseString(string text)
     {
