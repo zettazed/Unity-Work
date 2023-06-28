@@ -60,7 +60,7 @@ Project Settings:
 		        share ();
 		    },
 		    Название метода в скрипте с кнопкой пригласить друзей: function () {
-		        share ();
+		        friendInvite ();
 		    }		    
 		});
 
@@ -106,23 +106,21 @@ Project Settings:
 
 
 Для отключения всех звуков при выходе из игры или сворачивании:
-	vkBridge.subscribe(eventHandler); 
-	function eventHandler(e) {
-
-	  const { type, data } = e.detail;
-	  switch(type) {
-	    case 'VKWebAppViewHide':
-	      my_audio.pause(); // Останавливаем воспроизведение аудио 
-	      break;
-	    case 'VKWebAppViewRestore': 
-	      my_audio.play(); // Запускаем воспроизведение
-	      break;
-	            
-	      // Обработчики других событий
-	      // ...
-
-	    }
-	}
+	bridge.subscribe((e) => {
+      if (e.detail.type === 'VKWebAppViewHide') {
+        unityInstance.SendMessage('VKManager', 'AudioOff', JSON.stringify(data.result)); // Останавливаем воспроизведение аудио 
+        // Действия при переключении
+        // из игры или мини приложения
+      }
+    });
+    
+    vkBridge.subscribe((e) => {
+      if (e.detail.type === 'VKWebAppViewRestore') {
+        unityInstance.SendMessage('VKManager', 'AudioOn', JSON.stringify(data.result)); // Запускаем воспроизведение
+        // Действия при восстановлении 
+        // экрана игры или мини приложения
+      }
+    });
 
 
 index.html:
