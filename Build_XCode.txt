@@ -1,5 +1,8 @@
 Сборка для App Store:
 
+	В Unity:
+		удалить файлы Firebase, если такие имеются
+
 	Project, Targets, Pod файл:
 		General:
 			Display Name - Название игры
