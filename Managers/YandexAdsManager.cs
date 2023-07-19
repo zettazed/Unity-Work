@@ -8,7 +8,7 @@ using YandexMobileAds.Base;
 public class YandexAdsManager : MonoBehaviour
 {
 
-    public static YandexAdManager Instance;
+    public static YandexAdsManager Instance;
 
     #region Ad Blocks
     private RewardedAd rewardedAd;
