@@ -1,14 +1,4 @@
 Сборка для гугл:
-
-	Коты
-	C:/Main/GameTemplates/Home Design 09.09.2022/Home Design - Miss Robins Home Makeover Game/keystore4.keystore
-
-	Дизайн дома
-	C:/Main/GameTemplates/Home Design 09.09.2022/Home Design - Miss Robins Home Makeover Game/keystore3.keystore
-
-	Шарики
-	C:/Users/Kenny McCormic/Desktop/GameTemplates/Bubble Shooter Panda/Bubble Shooter Panda/witchpop3.keystore
-
 	Build Android Studio:
 
 		1) unityLibrary -> manifests -> AndroidManifest.xml
@@ -30,16 +20,35 @@
 		4) gradle.properties (Project Properties)
 			4.1) убрать android.enableR8
 
-		5) Если после публикации билда крашится игра:
-			build.gradle (Module: ИмяПроекта.unityLibrary)
-			5.1) Добавить строку:
-				implementation 'androidx.work:work-runtime:2.7.0'
+		5) Если после публикации билда крашится игра (libmain.so):
+			gradle.properties:
+			5.1) Добавить строку android.bundle.enableUncompressedNativeLibs=false
+			manifest:
+			5.2) Добавить строку android:extractNativeLibs="true"
 
+			Jewels Palace
+				Manifest:
+					android:name="com.unity3d.player.UnityPlayerActivity"
+				gradle:
+					implementation 'androidx.work:work-runtime:2.7.0'
+					
+					or
+					
+					implementation 'androidx.work:work-runtime-ktx:2.7.1'
+				gradle.properties:
+					android.useAndroidX=true
+			Attraction Park
+				implementation 'com.android.support:multidex:2.0.1'
+				multiDexEnabled true
+
+		6) Если при загрузке в стор, не хватает com.google AD ID:
+			unityLibrary -> manifests -> AndroidManifest.xml
+				<uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 
 	Keystore:
 		Alias: release
 		Password: 32505530l
-
+		match3game90
 
 	LogCat:
 
