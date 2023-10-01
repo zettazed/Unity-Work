@@ -15,7 +15,7 @@
 				implementation "com.android.billingclient:billing:$billing_version"
 
 		3) build.gradle (Project: Имя проекта)
-			3.1) Обновить gradle (навести курсор на gradle и нажать на More Actions)
+			3.1) Обновить gradle (навести курсор на gradle и нажать на More Actions) (7.2.2)
 
 		4) gradle.properties (Project Properties)
 			4.1) убрать android.enableR8
