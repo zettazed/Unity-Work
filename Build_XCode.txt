@@ -2,6 +2,8 @@
 
 	В Unity:
 		удалить файлы Firebase, если такие имеются
+	Если вылезает ошибка (LocationService class is used but Locations Usage Description is empty. App will not work on iOS 10+.)
+		В Locations Usage Description вставить - To provide local advertising to user and improve regional app performance.
 
 	Project, Targets, Pod файл:
 		General:
