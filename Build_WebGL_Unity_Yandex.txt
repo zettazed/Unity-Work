@@ -22,6 +22,15 @@ Yandex SDK -> Initialize SDK
 	Directory path - выбрать папку куда делать билд
 	Insert game title - название папки и архива проекта с WebGL исходником
 
+После окончания сборки добавить следующий код в index.html в тег <script> перед var container:
+YaGames
+      .init()
+      .then(ysdk => {
+        console.log('Yandex SDK initialized');
+        window.ysdk = ysdk;
+        ysdk.features.LoadingAPI?.ready();
+      });
+
 
 Покупки:
 https://unityhub.ru/guides/kak-podklyuchit-vnutriigrovye-pokupki-dlya-yandeks-igr_88
