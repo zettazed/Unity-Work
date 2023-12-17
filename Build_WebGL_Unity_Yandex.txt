@@ -22,6 +22,8 @@ Yandex SDK -> Initialize SDK
 	Directory path - выбрать папку куда делать билд
 	Insert game title - название папки и архива проекта с WebGL исходником
 
+load type на decompress on load на всех звуках - чтобы не было плеера в уведомлениях на телефоне при игре
+
 После окончания сборки добавить следующий код в index.html в тег <script> перед var container:
 YaGames
       .init()
