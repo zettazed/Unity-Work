@@ -1,0 +1,55 @@
+Начало:
+	1) Нужно добавить на сцену YandexGame из тестовой сцены
+	2) Настройки проекта:
+		Project Settings (Player):
+			Resolution and Presentation:
+				Run In Background = false
+				WebGL Template = Yandex
+			Other Settings:
+				Color Space = Gamma
+				Lightmap Encoding = Low Quality
+			Publishing Settings:
+				Compression Format = Gzip
+				DataCaching = true
+				Decompression Fallback = true
+	3) Настройки InfoYG смотреть в скрине InfoYG.png (Приложен в GitHub "UnityWork/YandexBuildDocumentation")
+	4) Заменить index.html который находится в "Assets/WebGLTemplates/PluginYG"
+
+Реклама:
+	В объекте YandexGame в компоненте "ViewingAdsYG" изменить настройки как в в скрине ViewingAdsYG.png (Приложен в GitHub "UnityWork/YandexBuildDocumentation")
+	
+	Interstitial:
+		YandexGame.FullscreenShow();
+
+	Rewarded:
+		YandexGame.RewVideoShow(id);
+		Добавить метод Reward() в YandexGame обьект на сцене в Action "Reward Video Ad"
+
+ЛидерБорд:
+	1) Нужно взять из тестовой сцены LeaderBoardManager
+	2) Добавить следующую строчку в место, где будет изменяться лидерборд (К примеру, изменение количества денег игрока)
+		LeaderBoardManager.Instance.NewScore(score); // score - Что передавать в качестве рекорда (Пройденные уровни, количество денег)
+	2) Добавить лидерборд в консоли Яндекс.Игры
+
+Облачные сохранения:
+	1) Загрузить скрипт "SaverManagerMy" из GitHub "UnityWork/YandexBuildDocumentation"
+	2) В скрипте SavesYG.cs нужно добавить свои переменные, которые будут сохраняться
+
+	Сохранение (в методе Save() скрипта SaverManagerMy.cs):
+		YandexGame.savesData.Название_Переменной_Для_Сохранения = Скрипт_Где_Находится_Переменная_Которую_Хочу_Сохранить.Название_Переменной_Для_Сохранения;
+
+	Загрузка сохранений (в методе GetLoad() скрипта SaverManagerMy.cs):
+		Скрипт_Где_Находится_Переменная_Которую_Хочу_Сохранить.Название_Переменной_Для_Сохранения = YandexGame.savesData.Название_Переменной_Для_Сохранения;
+
+Покупки:
+	1) Нужно добавить на сцену, где происходит покупка, Receiving Purchase из тестовой сцены
+	2) Нужно добавить на сцену, где происходит покупка, Purchase из тестовой сцены (Добавлять в иерархии туда, где и сама кнопка покупки)
+	3) В Purchase поменять в Data: id, price; В TextLegacy: Price Value (сюда добавить текст, который будет меняться для получения цены)
+	4) Добавить покупки в консоли Яндекс.Игры
+	5) В скрипте ReceivingPurchaseExample.cs в метод SuccessPurchased() добавить:
+	    switch (id)
+	    {
+	        case "ID_Покупки": // ID_Покупки к примеру, может быть "Coins1000"
+	            // Получение покупки, если оплата прошла успешно (К примеру, выдать игроку монеты)
+	            break;
+	    }
