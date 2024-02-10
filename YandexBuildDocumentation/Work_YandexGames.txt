@@ -3,20 +3,29 @@
 	2) Настройки проекта:
 		Project Settings (Player):
 			Resolution and Presentation:
+				Default Canvas Width = 16 либо 9
+				Default Canvas Height = 9 либо 16
 				Run In Background = false
-				WebGL Template = Yandex
+				WebGL Template = 1.6 Fixed Ratio
 			Other Settings:
+				Auto Graphics API = true
+				Static Batching = true
+				Dynamic Batching = true
 				Color Space = Gamma
 				Lightmap Encoding = Low Quality
+				Strip Engine Code = false
 			Publishing Settings:
-				Compression Format = Gzip
+				Enable Exceptions = Full Without Stacktrace
+				Compression Format = Brotli
 				DataCaching = true
 				Decompression Fallback = true
+				Initial Memory Size = 256
+				Geometric Memory Growth Cap = 128
 	3) Настройки InfoYG смотреть в скрине InfoYG.png (Приложен в GitHub "UnityWork/YandexBuildDocumentation")
 	4) Заменить index.html который находится в "Assets/WebGLTemplates/PluginYG"
 
 Реклама:
-	В объекте YandexGame в компоненте "ViewingAdsYG" изменить настройки как в в скрине ViewingAdsYG.png (Приложен в GitHub "UnityWork/YandexBuildDocumentation")
+	В объекте YandexGame в компоненте "ViewingAdsYG" изменить настройки как в скрине ViewingAdsYG.png (Приложен в GitHub "UnityWork/YandexBuildDocumentation")
 	
 	Interstitial:
 		YandexGame.FullscreenShow();
@@ -30,16 +39,6 @@
 	2) Добавить следующую строчку в место, где будет изменяться лидерборд (К примеру, изменение количества денег игрока)
 		LeaderBoardManager.Instance.NewScore(score); // score - Что передавать в качестве рекорда (Пройденные уровни, количество денег)
 	2) Добавить лидерборд в консоли Яндекс.Игры
-
-Облачные сохранения:
-	1) Загрузить скрипт "SaverManagerMy" из GitHub "UnityWork/YandexBuildDocumentation"
-	2) В скрипте SavesYG.cs нужно добавить свои переменные, которые будут сохраняться
-
-	Сохранение (в методе Save() скрипта SaverManagerMy.cs):
-		YandexGame.savesData.Название_Переменной_Для_Сохранения = Скрипт_Где_Находится_Переменная_Которую_Хочу_Сохранить.Название_Переменной_Для_Сохранения;
-
-	Загрузка сохранений (в методе GetLoad() скрипта SaverManagerMy.cs):
-		Скрипт_Где_Находится_Переменная_Которую_Хочу_Сохранить.Название_Переменной_Для_Сохранения = YandexGame.savesData.Название_Переменной_Для_Сохранения;
 
 Покупки:
 	1) Нужно добавить на сцену, где происходит покупка, Receiving Purchase из тестовой сцены
@@ -56,3 +55,29 @@
 	6) Сделать консумирование:
 		В метод Start() в любом скрипте добавить строчку:
 			YandexGame.ConsumePurchases();
+
+	var purchase = YandexGame.PurchaseByID(data.id);
+	textLegasy.priceValue.text = purchase.priceValue + " YAN";
+
+Автоматический выбор языка:
+	В скрипт LocalizationManager_Language на 176 строку:
+		string lang;
+
+		if (YandexGame.EnvironmentData.language == "ru")
+		    lang = "Russian";
+		else
+		    lang = "English";
+
+		string SavedLanguage = lang;
+		string SysLanguage = lang;
+
+Облачные сохранения:
+	1) Загрузить скрипт "SaverManagerMy" из GitHub "UnityWork/YandexBuildDocumentation"
+	2) В скрипте SavesYG.cs нужно добавить свои переменные, которые будут сохраняться
+
+	Сохранение (в методе Save() скрипта SaverManagerMy.cs):
+		YandexGame.savesData.Название_Переменной_Для_Сохранения = Скрипт_Где_Находится_Переменная_Которую_Хочу_Сохранить.Название_Переменной_Для_Сохранения;
+
+	Загрузка сохранений (в методе GetLoad() скрипта SaverManagerMy.cs):
+		Скрипт_Где_Находится_Переменная_Которую_Хочу_Сохранить.Название_Переменной_Для_Сохранения = YandexGame.savesData.Название_Переменной_Для_Сохранения;
+	3) Если в игре используется Player Prefs, то лучше будет использовать вместо PlayerPrefs класса - класс SavesYG
