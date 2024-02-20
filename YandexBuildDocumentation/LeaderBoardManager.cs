@@ -11,16 +11,36 @@ public class LeaderBoardManager : MonoBehaviour
 
     public void Awake()
     {
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        if (LeaderBoardManager.Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    public void PauseSound()
+    {
+        AudioListener.volume = 0f;
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeSound()
+    {
+        AudioListener.volume = 1f;
+        Time.timeScale = 1f;
+    }
+
+    public void Start()
+    {
+        //YandexGame.ConsumePurchases();
     }
 
     public void NewScore(int score)
     {
-        // —татический метод добавление нового рекорда
+        // ??????????? ????? ?????????? ?????? ???????
         YandexGame.NewLeaderboardScores(leaderboardYG.nameLB, score);
 
-        // ћетод добавление нового рекорда обращением к компоненту LeaderboardYG
+        // ????? ?????????? ?????? ??????? ?????????? ? ?????????? LeaderboardYG
         // leaderboardYG.NewScore(int.Parse(scoreLbInputField.text));
     }
 }
