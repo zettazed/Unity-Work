@@ -24,6 +24,10 @@
 	3) Настройки InfoYG смотреть в скрине InfoYG.png (Приложен в GitHub "UnityWork/YandexBuildDocumentation")
 	4) Заменить index.html который находится в "Assets/WebGLTemplates/PluginYG"
 
+GameReadyAPI:
+	Добавить в место загрузки меню (желательно после init сцены):
+		YandexGame.GameReadyAPI();
+
 Реклама:
 	В объекте YandexGame в компоненте "ViewingAdsYG" изменить настройки как в скрине ViewingAdsYG.png (Приложен в GitHub "UnityWork/YandexBuildDocumentation")
 	
@@ -56,6 +60,9 @@
 		В метод Start() в любом скрипте добавить строчку:
 			YandexGame.ConsumePurchases();
 
+			Для проверки работоспособности:
+				YandexGame.BuyPayments(id);
+
 	var purchase = YandexGame.PurchaseByID(data.id);
 	textLegasy.priceValue.text = purchase.priceValue + " YAN";
 
@@ -81,3 +88,9 @@
 	Загрузка сохранений (в методе GetLoad() скрипта SaverManagerMy.cs):
 		Скрипт_Где_Находится_Переменная_Которую_Хочу_Сохранить.Название_Переменной_Для_Сохранения = YandexGame.savesData.Название_Переменной_Для_Сохранения;
 	3) Если в игре используется Player Prefs, то лучше будет использовать вместо PlayerPrefs класса - класс SavesYG
+
+Настройки перед сборкой:
+	Во всех звуках в проекте включить Load Type = Decompress On Load
+	Добавить в папку Assets:
+		TexturePostprocessor.cs
+		После выбрать всех текстуры в проекте, нажать ПКМ, и нажать Reimport
