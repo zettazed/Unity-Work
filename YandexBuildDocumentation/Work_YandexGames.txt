@@ -32,10 +32,17 @@ GameReadyAPI:
 	В объекте YandexGame в компоненте "ViewingAdsYG" изменить настройки как в скрине ViewingAdsYG.png (Приложен в GitHub "UnityWork/YandexBuildDocumentation")
 	
 	Interstitial:
-		YandexGame.FullscreenShow();
+		if (!YandexGame.nowAdsShow && YandexGame.timerShowAd >= YandexGame.Instance.infoYG.fullscreenAdInterval)
+		{
+		    YandexGame.FullscreenShow(null, closeAd);
+		}
+		else
+		{
+		    closeAd();
+		}
 
 	Rewarded:
-		YandexGame.RewVideoShow(id);
+		YandexGame.RewVideoShow(id, rewarded);
 		Добавить метод Reward() в YandexGame обьект на сцене в Action "Reward Video Ad"
 
 ЛидерБорд:
@@ -93,4 +100,7 @@ GameReadyAPI:
 	Во всех звуках в проекте включить Load Type = Decompress On Load
 	Добавить в папку Assets:
 		TexturePostprocessor.cs
-		После выбрать всех текстуры в проекте, нажать ПКМ, и нажать Reimport
+		После выбрать все текстуры в проекте, нажать ПКМ, и нажать Reimport
+
+
+Если при рекламе игра полностью останавливается, то в Viewving Ads YG поставить PauseType = Nothing To Control
