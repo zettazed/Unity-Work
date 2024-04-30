@@ -106,31 +106,14 @@ GameReadyAPI:
 Если при рекламе игра полностью останавливается, то в Viewving Ads YG поставить PauseType = Nothing To Control
 
 Чтобы музыка не проигрывалась, когда меняешь вкладку в Яндекс Браузере:
-	1) в LeaderBoardManager в конце скрипта:
-		public bool MusicWasEnabled = false;
-
-		public void PauseMusic()
-		{
-		    MusicWasEnabled = Music.instance.IsEnabled();
-
-		    if (MusicWasEnabled)
-		        Music.instance.SetEnabled(false, true);
-		}
-
-		public void ResumeMusic()
-		{
-		    if (MusicWasEnabled)
-		        Music.instance.SetEnabled(true, true);
-		}
-
-	2) на 206 строку в index.html
+	на 206 строку в index.html
 		document.addEventListener('visibilitychange', function () {
 		    if (document.visibilityState == "hidden")
 		    {
-		        myGameInstance.SendMessage("LeaderBoardManager", "PauseMusic");
+		        myGameInstance.SendMessage("LeaderBoardManager", "PauseSound");
 		    }   
 		    else
 		    {
-		        myGameInstance.SendMessage("LeaderBoardManager", "ResumeMusic");
+		        myGameInstance.SendMessage("LeaderBoardManager", "ResumeSound");
 		    }
 		});
