@@ -71,7 +71,9 @@ GameReadyAPI:
 				YandexGame.BuyPayments(id);
 
 	var purchase = YandexGame.PurchaseByID(data.id);
-	textLegasy.priceValue.text = purchase.priceValue + " YAN";
+	textLegasy.priceValue.text = purchase.priceValue;
+
+	В index.html шаблона изменить 545 строку на priceValue[i] = products[i].price; (функция GetPayments())
 
 Автоматический выбор языка:
 	В скрипт LocalizationManager_Language на 176 строку:
@@ -106,14 +108,24 @@ GameReadyAPI:
 Если при рекламе игра полностью останавливается, то в Viewving Ads YG поставить PauseType = Nothing To Control
 
 Чтобы музыка не проигрывалась, когда меняешь вкладку в Яндекс Браузере:
-	на 206 строку в index.html
+	на 206 или 391 (в WebGL Templates) строку в index.html
 		document.addEventListener('visibilitychange', function () {
 		    if (document.visibilityState == "hidden")
 		    {
-		        myGameInstance.SendMessage("LeaderBoardManager", "PauseSound");
+		        myGameInstance.SendMessage("LeaderBoardManager", "PauseMusic");
 		    }   
 		    else
 		    {
-		        myGameInstance.SendMessage("LeaderBoardManager", "ResumeSound");
+		        myGameInstance.SendMessage("LeaderBoardManager", "ResumeMusic");
 		    }
 		});
+
+
+
+
+Обновить Соединяйка Дома:
+	1) Добавить рекламу по таймеру inter
+	2) Исправить косяки модерации в черновике
+	3) Добавить лидерборд
+	4) Как-нибудь добавить покупки
+	//5) Добавить скрины на мобильные от десктопа
