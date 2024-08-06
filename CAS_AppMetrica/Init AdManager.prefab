@@ -1,0 +1,341 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &331914562888300867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 71924716204701587}
+  - component: {fileID: 3035950197569277688}
+  m_Layer: 0
+  m_Name: Interstitial Ad Object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &71924716204701587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331914562888300867}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8532637365216982850}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3035950197569277688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331914562888300867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60dca420af8994f1396ba88695765563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  managerId:
+    android: 0
+    ios: 0
+  OnAdLoaded:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdFailedToLoad:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdFailedToShow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdShown:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdClosed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdImpression:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &3409994565564857382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6782219835141482830}
+  - component: {fileID: 2594253871197293772}
+  m_Layer: 0
+  m_Name: Return To Play Ad Object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6782219835141482830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3409994565564857382}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8532637365216982850}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2594253871197293772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3409994565564857382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3845180a593481f81ed40627fa712b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  managerId:
+    android: 0
+    ios: 0
+  _allowReturnToPlayAd: 1
+  OnAdLoaded:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdFailedToLoad:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdFailedToShow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdShown:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdClosed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdImpression:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &3849977022277172732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6097919279673389153}
+  - component: {fileID: 1021146231380167666}
+  m_Layer: 0
+  m_Name: Banner Ad Object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6097919279673389153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3849977022277172732}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8532637365216982850}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1021146231380167666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3849977022277172732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 843e5b43b4dcf427780c1376ee0473ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  managerId:
+    android: 0
+    ios: 0
+  adPosition: 3
+  adOffset: {x: 0, y: 0}
+  adSize: 1
+  OnAdLoaded:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdFailedToLoad:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdShown:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdHidden:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdImpression:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &7304473895149226073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3141876484129863809}
+  - component: {fileID: 313706736306535247}
+  m_Layer: 0
+  m_Name: Rewarded Ad Object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3141876484129863809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7304473895149226073}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8532637365216982850}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &313706736306535247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7304473895149226073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb8a64e7e44d4607b2e3c17cd31f9ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  managerId:
+    android: 0
+    ios: 0
+  restartInterstitialInterval: 0
+  OnAdLoaded:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdFailedToLoad:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdFailedToShow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdShown:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdClosed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAdImpression:
+    m_PersistentCalls:
+      m_Calls: []
+  OnReward:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &8816115162802156932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8532637365216982850}
+  - component: {fileID: 9007759458390133361}
+  m_Layer: 0
+  m_Name: Init AdManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8532637365216982850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8816115162802156932}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 275.61, y: 450.84912, z: 1.6485217}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6097919279673389153}
+  - {fileID: 71924716204701587}
+  - {fileID: 3141876484129863809}
+  - {fileID: 6782219835141482830}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9007759458390133361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8816115162802156932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc0325880c5bb4d9cb74eceaed5d259a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  managerId:
+    android: 0
+    ios: 0
+  initializeOnAwake: 1
+  consentFlowEnabled: 1
+  consentFlow: {fileID: 0}
+  metaDataProcessing: 0
+  metaAdvertiserTracking: 0
+  OnInitialized:
+    m_PersistentCalls:
+      m_Calls: []
+  OnInitializationFailed:
+    m_PersistentCalls:
+      m_Calls: []
