@@ -1,3 +1,7 @@
+implementation "androidx.fragment:fragment:1.6.0"
+Ghhjj7358912
+release
+
 Сборка для гугл:
 	Build Android Studio:
 
@@ -11,7 +15,7 @@
 				implementation(name: 'billing-версия', ext:'aar')
 
 			2.2) Добавить строчки:
-				def billing_version = "4.0.0"
+				def billing_version = "6.0.1"
 				implementation "com.android.billingclient:billing:$billing_version"
 
 		3) build.gradle (Project: Имя проекта)
@@ -45,6 +49,10 @@
 			unityLibrary -> manifests -> AndroidManifest.xml
 				<uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 
+		7) Если ошибка What went wrong:Execution failed for task ':launcher:processDebugMainManifest'.> Manifest merger failed with multiple errors:
+			В Manifest добавить:
+				<application tools:node="replace">
+
 	Keystore:
 		Alias: release
 		Password: 32505530l
@@ -53,7 +61,7 @@
 	LogCat:
 
 		cd C:\Program Files\Unity\Hub\Editor\2021.1.1f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools
-или
+	или
 		cd C:\Program Files\Unity\Hub\Editor\2020.2.7f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools
 
 		adb logcat -s Unity
