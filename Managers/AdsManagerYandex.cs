@@ -3,6 +3,17 @@ using UnityEngine;
 using YandexMobileAds;
 using YandexMobileAds.Base;
 
+/*
+ 
+ДЕМО-ID БЛОКОВ РЕКЛАМЫ ЯНДЕКСА:
+1) App Open Ad - demo-appopenad-yandex
+2) Banner Ad - demo-banner-yandex
+3) Interstitial Ad - demo-interstitial-yandex
+4) Rewarded Ad - demo-rewarded-yandex
+ 
+*/
+
+
 public class AdsManagerYandex : MonoBehaviour
 {
     public static AdsManagerYandex Instance;
