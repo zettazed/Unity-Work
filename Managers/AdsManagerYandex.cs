@@ -36,6 +36,7 @@ public class AdsManagerYandex : MonoBehaviour
 
         DontDestroyOnLoad(this);
 
+        #region States Assign
         this.appOpenAdLoader = new AppOpenAdLoader();
         this.appOpenAdLoader.OnAdLoaded += this.HandleAdLoaded;
         this.appOpenAdLoader.OnAdFailedToLoad += this.HandleAdFailedToLoad;
@@ -50,6 +51,7 @@ public class AdsManagerYandex : MonoBehaviour
         this.rewardedAdLoader = new RewardedAdLoader();
         this.rewardedAdLoader.OnAdLoaded += this.HandleRewardAdLoaded;
         this.rewardedAdLoader.OnAdFailedToLoad += this.HandleRewardAdFailedToLoad;
+#endregion
     }
 
     private void Start()
