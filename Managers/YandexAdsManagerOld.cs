@@ -5,7 +5,7 @@ using UnityEngine;
 using YandexMobileAds;
 using YandexMobileAds.Base;
 
-public class YandexAdsManager : MonoBehaviour
+public class YandexAdsManagerOld : MonoBehaviour
 {
 
     public static YandexAdsManager Instance;
@@ -161,3 +161,4 @@ public class YandexAdsManager : MonoBehaviour
     }
     #endregion
 }
+
