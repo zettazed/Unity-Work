@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using YandexMobileAds;
 using YandexMobileAds.Base;
@@ -23,13 +23,17 @@ public class AdsManagerYandex : MonoBehaviour
     [Header("Interstitial Ad")]
     private InterstitialAdLoader interstitialAdLoader;
     private Interstitial interstitial;
+    [HideInInspector] public Action InterstitialCloseAction;
 
     [Header("Rewarded Ad")]
     private RewardedAdLoader rewardedAdLoader;
     private RewardedAd rewardedAd;
+    [HideInInspector] public Action RewardedCloseAction;
 
     public void Awake()
     {
+        Instance = this;
+
         DontDestroyOnLoad(this);
 
         this.appOpenAdLoader = new AppOpenAdLoader();
@@ -154,6 +158,7 @@ public class AdsManagerYandex : MonoBehaviour
 
     public void ShowInterstitial()
     {
+#if !UNITY_EDITOR
         if (this.interstitial == null)
             return;
 
@@ -164,8 +169,34 @@ public class AdsManagerYandex : MonoBehaviour
         this.interstitial.OnAdDismissed += this.HandleInterstitialAdDismissed;
 
         this.interstitial.Show();
+#endif
     }
-    #endregion
+
+    public void ShowInterstitial(Action adShown)
+    {
+        InterstitialCloseAction = adShown;
+
+#if UNITY_EDITOR
+        InterstitialCloseAction?.Invoke();
+#else
+    if (this.interstitial == null)
+        {
+            InterstitialCloseAction?.Invoke();
+            return;
+        }
+
+        
+
+        this.interstitial.OnAdClicked += this.HandleInterstitialAdClicked;
+        this.interstitial.OnAdShown += this.HandleInterstitialAdShown;
+        this.interstitial.OnAdFailedToShow += this.HandleInterstitialAdFailedToShow;
+        this.interstitial.OnAdImpression += this.HandleInterstitialImpression;
+        this.interstitial.OnAdDismissed += this.HandleInterstitialAdDismissed;
+
+        this.interstitial.Show();
+#endif
+    }
+#endregion
 
     #region Rewarded Ad
     private void RequestRewardedAd()
@@ -184,12 +215,19 @@ public class AdsManagerYandex : MonoBehaviour
         this.rewardedAdLoader.LoadAd(this.CreateAdRequest(adUnitId));
     }
 
-    public void ShowRewardedAd()
+    public void ShowRewardedAd(Action adShown)
     {
+        RewardedCloseAction = adShown;
+#if UNITY_EDITOR
+        RewardedCloseAction?.Invoke();
+#else
         if (this.rewardedAd == null)
         {
+            RewardedCloseAction?.Invoke();
             return;
         }
+
+        
 
         this.rewardedAd.OnAdClicked += this.HandleRewardAdClicked;
         this.rewardedAd.OnAdShown += this.HandleRewardAdShown;
@@ -199,6 +237,7 @@ public class AdsManagerYandex : MonoBehaviour
         this.rewardedAd.OnRewarded += this.HandleRewardRewarded;
 
         this.rewardedAd.Show();
+#endif
     }
     #endregion
 
@@ -317,7 +356,7 @@ public void HandleInterstitialAdLoaded(object sender, InterstitialAdLoadedEventA
 
     public void HandleInterstitialAdShown(object sender, EventArgs args)
     {
-        
+        InterstitialCloseAction?.Invoke();
     }
 
     public void HandleInterstitialAdDismissed(object sender, EventArgs args)
@@ -372,7 +411,7 @@ public void HandleInterstitialAdLoaded(object sender, InterstitialAdLoadedEventA
 
     public void HandleRewardRewarded(object sender, Reward args)
     {
-
+        RewardedCloseAction?.Invoke();
     }
 
     public void HandleRewardAdFailedToShow(object sender, AdFailureEventArgs args)
