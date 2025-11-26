@@ -51,7 +51,7 @@ public class AdsManagerYandex : MonoBehaviour
         this.rewardedAdLoader = new RewardedAdLoader();
         this.rewardedAdLoader.OnAdLoaded += this.HandleRewardAdLoaded;
         this.rewardedAdLoader.OnAdFailedToLoad += this.HandleRewardAdFailedToLoad;
-#endregion
+        #endregion
     }
 
     private void Start()
