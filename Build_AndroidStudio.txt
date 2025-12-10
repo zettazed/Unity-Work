@@ -15,7 +15,7 @@ release
 				implementation(name: 'billing-версия', ext:'aar')
 
 			2.2) Добавить строчки:
-				def billing_version = "6.0.1"
+				def billing_version = "8.0.0"
 				implementation "com.android.billingclient:billing:$billing_version"
 
 		3) build.gradle (Project: Имя проекта)
@@ -49,13 +49,13 @@ release
 			unityLibrary -> manifests -> AndroidManifest.xml
 				<uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 
-		7) Если ошибка What went wrong:Execution failed for task ':launcher:processDebugMainManifest'.> Manifest merger failed with multiple errors:
+		7) (Если нет покупок в игре) Если ошибка What went wrong:Execution failed for task ':launcher:processDebugMainManifest'.> Manifest merger failed with multiple errors:
 			В Manifest добавить:
 				<application tools:node="replace">
 
 	Keystore:
 		Alias: release
-		Password: 32505530l
+		Password: 32505530l			Ghhjj7358912
 		match3game90
 
 	LogCat:
@@ -65,3 +65,45 @@ release
 		cd C:\Program Files\Unity\Hub\Editor\2020.2.7f1\Editor\Data\PlaybackEngines\AndroidPlayer\SDK\platform-tools
 
 		adb logcat -s Unity
+
+
+																									В манифест UnityLibrary и Launcher
+																										<meta-data android:name="console_app_id_value" android:value="2063677702" />
+																										<meta-data android:name="internal_config_key" android:value="unity" />
+
+																									build.gradle (Module: ИмяПроекта.unityLibrary)
+																									в android{}
+																										(сюда bundle id проекта) namespace "com.gudilin.jewelsquest"
+																										namespace "com.unity3d.player"
+																										ndkPath "C:/android-ndk-r27-0"
+
+																										minSdkVersion 24
+																									build.gradle (Module: ИмяПроекта.launcher)
+																									в android{}
+																										namespace "com.unity3d.player"
+																										namespace "com.gudilin.jewelsquest" - сюда bundle id проекта
+																										ndkPath "C:/android-ndk-r27-0"
+
+																										minSdkVersion 24
+
+																									build.gradle (Module: ИмяПроекта.unityLibrary.YandexMobileAdsPlugin.androidlib)
+																									в android{}
+																										namespace "com.yandex.mobile.ads.unity"
+																										И здесь же изменить compileSdkVersion на 36
+																										и buildToolsVersion на 35
+																										и targetSdkVersion на 36
+
+																									build.gradle (Module: ИмяПроекта.unityLibrary.RuStoreSDKSettings.androidlib)
+																									в android{}
+																										namespace "ru.rustore.unitysdk.settings"
+
+																									Project Structure:
+																									8.13.1
+																									8.13
+
+
+
+BLUETOOTH_CONNECT - Блютуз в игре не используется совсем. 
+READ_EXTERNAL_STORAGE - загрузка сохранений игры
+WRITE_EXTERNAL_STORAGE - сохранение игры в файлы (запись)
+READ_PHONE_STATE - приложение может узнать, идет ли в данный момент звонок и при необходимости приостановить свою работу или выполнить другие действия.
