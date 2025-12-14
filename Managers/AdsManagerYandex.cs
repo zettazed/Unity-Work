@@ -235,13 +235,8 @@ public class AdsManagerYandex : MonoBehaviour
         RewardedCloseAction?.Invoke();
 #else
         if (this.rewardedAd == null)
-        {
-            RewardedCloseAction?.Invoke();
             return;
-        }
-
         
-
         this.rewardedAd.OnAdClicked += this.HandleRewardAdClicked;
         this.rewardedAd.OnAdShown += this.HandleRewardAdShown;
         this.rewardedAd.OnAdFailedToShow += this.HandleRewardAdFailedToShow;
@@ -370,12 +365,14 @@ public void HandleInterstitialAdLoaded(object sender, InterstitialAdLoadedEventA
     public void HandleInterstitialAdShown(object sender, EventArgs args)
     {
         InterstitialCloseAction?.Invoke();
+        RequestInterstitial();
     }
 
     public void HandleInterstitialAdDismissed(object sender, EventArgs args)
     {
         this.interstitial.Destroy();
         this.interstitial = null;
+        RequestInterstitial();
     }
 
     public void HandleInterstitialImpression(object sender, ImpressionData impressionData)
@@ -415,6 +412,7 @@ public void HandleInterstitialAdLoaded(object sender, InterstitialAdLoadedEventA
     {
         this.rewardedAd.Destroy();
         this.rewardedAd = null;
+        RequestRewardedAd();
     }
 
     public void HandleRewardImpression(object sender, ImpressionData impressionData)
@@ -425,6 +423,7 @@ public void HandleInterstitialAdLoaded(object sender, InterstitialAdLoadedEventA
     public void HandleRewardRewarded(object sender, Reward args)
     {
         RewardedCloseAction?.Invoke();
+        RequestRewardedAd();
     }
 
     public void HandleRewardAdFailedToShow(object sender, AdFailureEventArgs args)
